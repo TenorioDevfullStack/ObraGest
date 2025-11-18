@@ -1,0 +1,10 @@
+# Dependências / builds comuns
+node_modules/
+dist/
+build/
+.vercel/
+
+# SO / editor
+.DS_Store
+Thumbs.db
+*.log
