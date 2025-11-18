@@ -113,6 +113,17 @@
         opacity: 0.8;
       }
 
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
       /* Hero Section */
       .hero {
         background: linear-gradient(135deg, #fff3e0 0%, #ffd4a8 100%);
@@ -444,19 +455,20 @@
         background-color: var(--primary-color);
         color: white;
         text-decoration: none;
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
         font-weight: bold;
         box-shadow: var(--shadow);
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        justify-content: center;
         transition: transform 0.2s, background-color 0.2s;
       }
 
       .floating-actions a img {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
       }
 
       .floating-actions a.whatsapp {
@@ -513,6 +525,11 @@
           padding: 0 1rem;
         }
 
+        .menu-toggle {
+          display: block;
+          align-self: flex-end;
+        }
+
         .logo {
           font-size: 1.4rem;
         }
@@ -528,6 +545,14 @@
           justify-content: center;
           gap: 0.8rem;
           font-size: 0.95rem;
+          display: none;
+          width: 100%;
+          margin-top: 0.5rem;
+        }
+
+        nav ul.open {
+          display: flex;
+          flex-direction: column;
         }
 
         .hero h1 {
@@ -565,13 +590,13 @@
         }
 
         .floating-actions a {
-          padding: 0.6rem 1rem;
-          font-size: 0.9rem;
+          width: 46px;
+          height: 46px;
         }
 
         .floating-actions a img {
-          width: 16px;
-          height: 16px;
+          width: 20px;
+          height: 20px;
         }
       }
 
@@ -612,9 +637,8 @@
         }
 
         .floating-actions a {
-          padding: 0.55rem 0.9rem;
-          font-size: 0.8rem;
-          border-radius: 999px;
+          width: 42px;
+          height: 42px;
         }
       }
     </style>
@@ -627,6 +651,7 @@
           <img src="logos/nova-logo.png" alt="Logo ObraGest" />
           ObraGest
         </div>
+        <button class="menu-toggle" aria-label="Abrir menu principal">☰</button>
         <ul>
           <li><a href="#features">Soluções</a></li>
           <li><a href="#differential">Diferenciais</a></li>
@@ -1050,18 +1075,18 @@
     </section>
 
     <div class="floating-actions">
-      <a href="#hero">⬆️ Voltar ao início</a>
+      <a href="#hero" aria-label="Voltar ao início">⬆️</a>
       <a
         href="https://wa.me/5511989437498"
         target="_blank"
         class="whatsapp"
         rel="noopener"
+        aria-label="Conversar pelo WhatsApp"
       >
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
           alt="WhatsApp"
         />
-        Falar pelo WhatsApp
       </a>
     </div>
 
@@ -1080,5 +1105,14 @@
         © 2025 Todos os direitos reservados. CNPJ: 61.919.928/0001-69.
       </p>
     </footer>
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector("nav ul");
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("open");
+        });
+      }
+    </script>
   </body>
 </html>
