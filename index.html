@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="ObraGest - App comercial para empresas de engenharia e reformas controlarem obras, equipes e clientes em um único lugar." />
+  <meta name="keywords" content="gestão de obras, cronograma, reformas, construção, PWA, app" />
+  <meta name="author" content="Intelligent Dev Solutions" />
+  <title>ObraGest - Gestão Inteligente de Obras e Reformas</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="logos/favicon_io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="logos/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="logos/favicon_io/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="logos/favicon_io/icon_64x64.png" />
+  <link rel="manifest" href="logos/favicon_io/site.webmanifest" />
+  <link rel="icon" type="image/png" sizes="192x192" href="logos/favicon_io/android-chrome-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="logos/favicon_io/android-chrome-512x512.png" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #d85a17;
+      --secondary-color: #f5a44c;
+      --accent-color: #ffe3c4;
+      --success-color: #5abf90;
+      --danger-color: #ff6b6b;
+      --light-bg: #fff8f1;
+      --dark-text: #2f1c0f;
+      --border-color: #f3d8c0;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-text);
+      background: linear-gradient(180deg, #fffdf7 0%, #fff6ec 100%);
+    }
+
+    a {
+      color: var(--primary-color);
+    }
+
+    a:hover {
+      color: #a73f0d;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: #5a1f0f;
+      color: white;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      width: 72px;
+      height: 72px;
+      padding: 0.3rem;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      object-fit: contain;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffd4a8 100%);
+      color: var(--dark-text);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .cta-button:hover {
+      background-color: #6d320b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    section h3 {
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* About Section */
+    .about {
+      background-color: #fffdf9;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .about-logos {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-box {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      flex: 0 1 150px;
+    }
+
+    .logo-box img {
+      max-width: 100%;
+      height: auto;
+      max-height: 120px;
+    }
+
+    .highlight-box {
+      background-color: var(--accent-color);
+      border-left: 5px solid var(--secondary-color);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 5px;
+      font-style: italic;
+      color: var(--dark-text);
+    }
+
+    /* Features Section */
+    .features {
+      background-color: var(--light-bg);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      border-top: 4px solid var(--secondary-color);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--dark-text);
+      line-height: 1.7;
+    }
+
+    /* Differential Section */
+    .differential {
+      background: linear-gradient(135deg, #fff8ef 0%, #ffe0c7 100%);
+    }
+
+    .differential-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .differential-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .differential-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    /* Architecture Section */
+    .architecture {
+      background-color: #fffdf9;
+    }
+
+    .arch-diagram {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .arch-box {
+      background: #ffffff;
+      color: var(--dark-text);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .arch-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ffe0cc;
+      padding-bottom: 0.5rem;
+    }
+
+    .arch-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .arch-box li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .arch-box li:before {
+      content: "✓";
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    /* Legal Section */
+    .docs {
+      background-color: #fff7ee;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .doc-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .doc-card h3 {
+      color: var(--accent-color);
+    }
+
+    .doc-card details {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+    }
+
+    .doc-card summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: var(--secondary-color);
+    }
+
+    .doc-card ul {
+      padding-left: 1.2rem;
+      margin-top: 0.8rem;
+      color: var(--dark-text);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: #fffdf9;
+      text-align: center;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contact-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .contact-card h4 {
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      z-index: 200;
+    }
+
+    .floating-actions a {
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      font-weight: bold;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .floating-actions a img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .floating-actions a.whatsapp {
+      background-color: #25d366;
+    }
+
+    .floating-actions a:not(.whatsapp):hover {
+      transform: translateY(-2px);
+      background-color: #b84912;
+    }
+
+    .floating-actions a.whatsapp:hover {
+      background-color: #1eb153;
+      transform: translateY(-2px);
+    }
+
+    .contact-card a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 0.6rem 0;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+        align-self: flex-end;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .logo img {
+        width: 56px;
+        height: 56px;
+        padding: 0.2rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        font-size: 0.95rem;
+        display: none;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      nav ul.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-logos {
+        gap: 1rem;
+      }
+
+      .logo-box {
+        flex: 0 1 120px;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .floating-actions {
+        right: 1rem;
+        bottom: 1rem;
+        gap: 0.6rem;
+      }
+
+      .floating-actions a {
+        width: 46px;
+        height: 46px;
+      }
+
+      .floating-actions a img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .cta-button {
+        padding: 0.7rem 1.3rem;
+        font-size: 0.85rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        align-items: center;
+      }
+
+      .logo img {
+        width: 48px;
+        height: 48px;
+      }
+
+      section h2 {
+        font-size: 1.6rem;
+      }
+
+      section h3 {
+        font-size: 1.2rem;
+      }
+
+      .floating-actions {
+        right: 0.6rem;
+        bottom: 0.6rem;
+        gap: 0.5rem;
+      }
+
+      .floating-actions a {
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="logos/favicon_io/icon_128x128.png" alt="Logo ObraGest" />
+        ObraGest
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menu principal">☰</button>
+      <ul>
+        <li><a href="#features">Soluções</a></li>
+        <li><a href="#differential">Diferenciais</a></li>
+        <li><a href="#delivery">Como Entregamos</a></li>
+        <li><a href="#documents">Documentação</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>ObraGest</h1>
+      <p>O app que coloca cada obra sob controle do começo ao fim.</p>
+      <p style="font-size: 1.1rem; opacity: 0.9">
+        Centralize prazos, equipes e clientes em um único painel simples de
+        entender.
+      </p>
+      <a href="#contact" class="cta-button">Quero conhecer o ObraGest</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <h2>Quem Está por Trás</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Sou Leandro Tenorio, <strong>Técnico em Eletrônica</strong> e
+            <strong>Eletricista</strong> que passou anos em canteiros. Sei na
+            prática como é controlar cronogramas, equipes e expectativas de
+            clientes exigentes.
+          </p>
+          <p>
+            Hoje atuo tanto em campo, entregando obras como
+            <strong>Eletricista</strong>, quanto no digital, desenvolvendo o
+            ObraGest como <strong>Desenvolvedor Full Stack</strong>. Assim,
+            você conversa com alguém que resolve o seu processo na prática e o
+            transforma em tecnologia.
+          </p>
+          <div class="highlight-box">
+            "Meu compromisso é traduzir a rotina da sua empresa em um app
+            intuitivo, com fluxos claros e resultados mensuráveis — da visita
+            técnica até a entrega final."
+          </div>
+        </div>
+        <div class="about-logos">
+          <div class="logo-box">
+            <img src="logos/raizeletrica_logo.jpeg" alt="Logo Raiz Elétrica"
+              style="max-height: 60px; margin-bottom: 0.5rem" />
+            <p style="font-size: 0.8rem; color: var(--dark-text)">
+              Serviços Elétricos
+            </p>
+          </div>
+          <div class="logo-box">
+            <img src="logos/logo-ids.png" alt="Logo Intelligent Dev Solutions"
+              style="max-height: 60px; margin-bottom: 0.5rem" />
+            <p style="font-size: 0.8rem; color: var(--dark-text)">
+              Intelligent Dev Solutions
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Soluções que Geram Resultado</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Projetos no Prazo</h3>
+          <p>
+            Monte cronogramas realistas com etapas, responsáveis e alertas.
+            Ajuste tudo com poucos cliques conforme a obra evolui.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Status em Tempo Real</h3>
+          <p>
+            Visualize o que está adiantado ou atrasado e antecipe decisões de
+            compra, equipe e logística.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Diário Visual de Obra</h3>
+          <p>
+            Registre ocorrências com fotos, vídeos e observações. Compartilhe
+            apenas o que o cliente precisa para confiar no processo.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Visão Gerencial</h3>
+          <p>
+            Gere relatórios claros com percentuais de avanço e indicadores que
+            sustentam reuniões com sócios e investidores.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Use em Qualquer Dispositivo</h3>
+          <p>
+            Acesse pelo celular, tablet ou computador. Continue operando mesmo
+            quando o canteiro estiver sem sinal.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3>Acesso Seguro e Controlado</h3>
+          <p>
+            Defina quem vê cada informação e mantenha contratos, valores e
+            documentos confidenciais protegidos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differential Section -->
+  <section class="differential" id="differential">
+    <div class="container">
+      <h2>Nosso Diferencial</h2>
+      <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem">
+        Um App que se Molda ao Seu Negócio
+      </p>
+      <p style="text-align: center; margin-bottom: 2rem">
+        Cada construtora tem seu próprio ritmo e jeito de entregar resultados.
+        O ObraGest nasce do seu processo atual e evolui junto com a sua
+        equipe, evitando longos treinamentos e desperdício de licença.
+      </p>
+      <div class="differential-content">
+        <div class="differential-card">
+          <div class="differential-icon">⚙️</div>
+          <h3>Funcionalidades Sob Medida</h3>
+          <p>
+            Campos específicos, integrações e relatórios exclusivos entram no
+            seu pacote. Desenvolvemos o que for necessário para refletir o seu
+            jeito de trabalhar.
+          </p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">🎨</div>
+          <h3>Identidade Visual</h3>
+          <p>
+            Entregue um app com sua marca, cores e tom de voz, reforçando
+            confiança a cada atualização enviada ao cliente.
+          </p>
+        </div>
+        <div class="differential-card">
+          <div class="differential-icon">📈</div>
+          <h3>Processo Evolutivo</h3>
+          <p>
+            Iniciamos com o essencial e adicionamos novos módulos quando fizer
+            sentido. Você investe apenas no que gera valor imediato.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section class="architecture" id="delivery">
+    <div class="container">
+      <h2>Como Entregamos</h2>
+      <p style="text-align: center; margin-bottom: 2rem">
+        Processo claro do primeiro contato até a operação rodando.
+      </p>
+      <div class="arch-diagram">
+        <div class="arch-box">
+          <h4>1. Diagnóstico e Planejamento</h4>
+          <p style="margin-bottom: 1rem; font-size: 0.95rem">
+            Mergulhamos na sua realidade para priorizar o que gera resultado
+            imediato.
+          </p>
+          <ul>
+            <li>Workshops com sua equipe</li>
+            <li>Mapeamento de fluxos e formulários</li>
+            <li>Roadmap com entregas rápidas</li>
+          </ul>
+        </div>
+        <div class="arch-box">
+          <h4>2. Construção e Validação</h4>
+          <p style="margin-bottom: 1rem; font-size: 0.95rem">
+            Construímos o app em ciclos curtos, apresentando telas e ajustes a
+            cada sprint.
+          </p>
+          <ul>
+            <li>Protótipos navegáveis</li>
+            <li>Feedback direto com decisores</li>
+            <li>Entrega parcial para testes reais</li>
+          </ul>
+        </div>
+        <div class="arch-box">
+          <h4>3. Implantação e Evolução</h4>
+          <p style="margin-bottom: 1rem; font-size: 0.95rem">
+            Treinamos sua equipe, monitoramos o uso e evoluímos novas
+            funcionalidades.
+          </p>
+          <ul>
+            <li>Onboarding guiado</li>
+            <li>Suporte humano próximo</li>
+            <li>Melhorias contínuas planejadas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Documents Section -->
+  <section class="docs" id="documents">
+    <div class="container">
+      <h2>Documentação Essencial</h2>
+      <p style="text-align: center; margin-bottom: 2rem">
+        Compilamos os documentos mais solicitados em negociações para garantir
+        transparência e segurança jurídica.
+      </p>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <h3>Política de Privacidade</h3>
+          <p>
+            Explica como o ObraGest coleta, utiliza e protege dados de clientes,
+            equipes e fornecedores seguindo a LGPD.
+          </p>
+          <details>
+            <summary>Principais pontos</summary>
+            <ul>
+              <li>Coleta limitada a informações necessárias à execução da obra.</li>
+              <li>
+                Uso restrito para gestão de projetos, comunicação e cumprimento
+                contratual.
+              </li>
+              <li>
+                Dados são armazenados em provedores com certificações de
+                segurança e acesso controlado.
+              </li>
+              <li>
+                Direitos dos titulares: acesso, correção, portabilidade e
+                exclusão sob solicitação formal.
+              </li>
+              <li>
+                Encarregado de dados: contato via
+                <a href="mailto:contato.raizeletrica@gmail.com">contato.raizeletrica@gmail.com</a>.
+              </li>
+            </ul>
+          </details>
+          <p style="font-size: 0.9rem; color: #777">
+            Última atualização: Janeiro/2025.
+          </p>
+        </article>
+        <article class="doc-card">
+          <h3>Termos de Uso Comercial</h3>
+          <p>
+            Define responsabilidades, limites e boas práticas para utilizar o
+            aplicativo dentro da sua empresa.
+          </p>
+          <details>
+            <summary>Cláusulas em destaque</summary>
+            <ul>
+              <li>Licença de uso corporativa não exclusiva e intransferível.</li>
+              <li>
+                Responsabilidade do cliente por manter credenciais seguras e
+                atualizar usuários autorizados.
+              </li>
+              <li>
+                Propriedade intelectual do software permanece com Leandro
+                Tenorio, com direitos de personalização contratados à parte.
+              </li>
+              <li>
+                Suspensão do acesso em casos de inadimplência ou uso fora do
+                escopo acordado.
+              </li>
+              <li>
+                Foro eleito: São Paulo/SP, respeitando o Código de Defesa do
+                Consumidor quando aplicável.
+              </li>
+            </ul>
+          </details>
+        </article>
+        <article class="doc-card">
+          <h3>Política de Suporte e SLA</h3>
+          <p>
+            Compromissos de atendimento após a implantação para garantir que o
+            ObraGest permaneça alinhado ao seu time.
+          </p>
+          <details>
+            <summary>Níveis de atendimento</summary>
+            <ul>
+              <li>
+                Suporte via WhatsApp e e-mail em horário comercial (9h às 18h,
+                dias úteis).
+              </li>
+              <li>
+                Resposta inicial em até 4 horas úteis para incidentes críticos e
+                1 dia útil para dúvidas operacionais.
+              </li>
+              <li>
+                Correções emergenciais priorizadas conforme impacto no
+                cronograma das obras.
+              </li>
+              <li>
+                Entregas de melhorias combinadas em ciclos quinzenais ou
+                mensais, conforme contrato.
+              </li>
+            </ul>
+          </details>
+        </article>
+        <article class="doc-card">
+          <h3>Política de Cookies e Segurança</h3>
+          <p>
+            Detalha o uso de cookies técnicos e mecanismos de proteção para os
+            dados acessados pelo time.
+          </p>
+          <details>
+            <summary>Saiba como protegemos seus dados</summary>
+            <ul>
+              <li>
+                Utilizamos cookies estritamente necessários para autenticação e
+                manutenção de sessão.
+              </li>
+              <li>
+                Não há uso de cookies para publicidade de terceiros sem
+                consentimento explícito.
+              </li>
+              <li>
+                Logs de acesso ficam disponíveis para auditoria por 12 meses.
+              </li>
+              <li>
+                Integrações externas seguem padrões de criptografia TLS e
+                autenticação via token.
+              </li>
+              <li>
+                Procedimentos de backup diário e testes periódicos de
+                recuperação.
+              </li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Vamos Construir Juntos?</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem">
+        Esta apresentação é o ponto de partida. O próximo passo é agendar uma
+        conversa para entendermos a fundo suas necessidades.
+      </p>
+      <div class="contact-info">
+        <div class="contact-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+            class="contact-logo" />
+          <h4>WhatsApp</h4>
+          <a href="https://wa.me/5511989437498" target="_blank">+55 11 98943-7498</a>
+        </div>
+        <div class="contact-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail"
+            class="contact-logo" />
+          <h4>Email</h4>
+          <a href="mailto:contato.raizeletrica@gmail.com">contato.raizeletrica@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
+            class="contact-logo" />
+          <h4>Instagram</h4>
+          <a href="https://www.instagram.com/raiz_eletrica?igsh=MXF0cmd5OHNwY3c1OA==" target="_blank">@raiz_eletrica</a>
+        </div>
+        <div class="contact-card">
+          <img src="logos/logo-ids.png" alt="Intelligent Dev Solutions" class="contact-logo" />
+          <h4>Portfólio</h4>
+          <a href="https://intelligentdevsolutions.com/" target="_blank">intelligentdevsolutions.com</a>
+        </div>
+        <div class="contact-card">
+          <img src="logos/raizeletrica_logo.jpeg" alt="Raiz Elétrica" class="contact-logo" />
+          <h4>Raiz Elétrica</h4>
+          <a href="https://www.raizeletrica.com.br/" target="_blank">raizeletrica.com.br</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="floating-actions">
+    <a href="#hero" aria-label="Voltar ao início">⬆️</a>
+    <a href="https://wa.me/5511989437498" target="_blank" class="whatsapp" rel="noopener"
+      aria-label="Conversar pelo WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <strong>ObraGest</strong> - Gestão Inteligente de Obras e Reformas
+    </p>
+    <p>
+      Desenvolvido com ❤️ por
+      <a href="https://intelligentdevsolutions.com/" target="_blank">Intelligent Dev Solutions</a>
+    </p>
+    <p style="margin-top: 1rem; font-size: 0.9rem">
+      © 2025 Todos os direitos reservados. CNPJ: 61.919.928/0001-69.
+    </p>
+  </footer>
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector("nav ul");
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+      });
+    }
+  </script>
+</body>
+
+</html>
