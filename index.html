@@ -634,6 +634,231 @@
         height: 42px;
       }
     }
+
+    .floating-actions a {
+      width: 42px;
+      height: 42px;
+    }
+
+
+    /* Showcase Section */
+    .showcase {
+      background-color: #fff;
+      padding-bottom: 2rem;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .showcase-item {
+      text-align: center;
+    }
+
+    .showcase-item img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      border: 8px solid #333;
+      transition: transform 0.3s;
+    }
+
+    .showcase-item:hover img {
+      transform: translateY(-10px);
+    }
+
+    .showcase-item h3 {
+      margin-top: 1.5rem;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    .showcase-item p {
+      font-size: 0.95rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    /* FAQ Section */
+    .faq {
+      background-color: var(--light-bg);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .faq h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+    }
+
+    .faq-item {
+      background: white;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--dark-text);
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .faq-item details[open] summary::after {
+      content: "-";
+    }
+
+    .faq-item p {
+      padding: 0 1.2rem 1.2rem 1.2rem;
+      color: #555;
+      line-height: 1.6;
+      border-top: 1px solid #eee;
+      margin-top: 0;
+      padding-top: 1rem;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      background-color: #fffdf9;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--primary-color);
+      position: relative;
+      background: #fffbf6;
+    }
+
+    .pricing-card.featured::before {
+      content: "Mais Popular";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-color);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .price-header h3 {
+      font-size: 1.5rem;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .price span {
+      font-size: 1rem;
+      color: #777;
+      font-weight: normal;
+    }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .price-features li {
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .price-features li::before {
+      content: "✓";
+      color: var(--success-color);
+      font-weight: bold;
+    }
+
+    .price-features li.disabled {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    .price-features li.disabled::before {
+      content: "✕";
+      color: #ccc;
+    }
+
+    .price-cta {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .price-cta.primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .price-cta.secondary {
+      background-color: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .price-cta:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
   </style>
 </head>
 
@@ -647,11 +872,11 @@
       </div>
       <button class="menu-toggle" aria-label="Abrir menu principal">☰</button>
       <ul>
-        <li><a href="#features">Soluções</a></li>
-        <li><a href="#differential">Diferenciais</a></li>
-        <li><a href="#delivery">Como Entregamos</a></li>
-        <li><a href="#documents">Documentação</a></li>
-        <li><a href="#contact">Contato</a></li>
+        <li><a href="#features">Funcionalidades</a></li>
+        <li><a href="#benefits">Benefícios</a></li>
+        <li><a href="#pricing">Planos</a></li>
+        <li><a href="#about">Quem Somos</a></li>
+        <li><a href="#contact">Suporte</a></li>
       </ul>
     </nav>
   </header>
@@ -660,12 +885,34 @@
   <section class="hero" id="hero">
     <div class="hero-content">
       <h1>ObraGest</h1>
-      <p>O app que coloca cada obra sob controle do começo ao fim.</p>
+      <p>O controle total das suas obras, do orçamento à entrega.</p>
       <p style="font-size: 1.1rem; opacity: 0.9">
-        Centralize prazos, equipes e clientes em um único painel simples de
-        entender.
+        Centralize cronogramas, equipes e financeiro em um único lugar. Comece a usar agora mesmo.
       </p>
-      <a href="#contact" class="cta-button">Quero conhecer o ObraGest</a>
+      <a href="#pricing" class="cta-button">Começar Grátis</a>
+    </div>
+  </section>
+
+  <!-- Showcase Section -->
+  <section class="showcase">
+    <div class="container">
+      <div class="showcase-grid">
+        <div class="showcase-item">
+          <img src="img/dashboard.png" alt="Dashboard do ObraGest" />
+          <h3>Visão Geral</h3>
+          <p>Acompanhe o progresso de todas as obras em uma única tela.</p>
+        </div>
+        <div class="showcase-item">
+          <img src="img/schedule.png" alt="Cronograma de Obra" />
+          <h3>Cronograma Inteligente</h3>
+          <p>Saiba exatamente o que deve ser feito hoje para não atrasar.</p>
+        </div>
+        <div class="showcase-item">
+          <img src="img/financial.png" alt="Controle Financeiro" />
+          <h3>Controle Financeiro</h3>
+          <p>Monitore gastos e evite surpresas no orçamento.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -677,21 +924,16 @@
         <div class="about-text">
           <p>
             Sou Leandro Tenorio, <strong>Técnico em Eletrônica</strong> e
-            <strong>Eletricista</strong> que passou anos em canteiros. Sei na
-            prática como é controlar cronogramas, equipes e expectativas de
-            clientes exigentes.
+            <strong>Eletricista</strong>. Criei o ObraGest porque sentia na pele a dificuldade de controlar cronogramas
+            e equipes usando planilhas e cadernos.
           </p>
           <p>
-            Hoje atuo tanto em campo, entregando obras como
-            <strong>Eletricista</strong>, quanto no digital, desenvolvendo o
-            ObraGest como <strong>Desenvolvedor Full Stack</strong>. Assim,
-            você conversa com alguém que resolve o seu processo na prática e o
-            transforma em tecnologia.
+            Desenvolvi essa ferramenta para resolver meus próprios problemas no canteiro de obras. Hoje, ela ajuda
+            centenas de profissionais a terem mais organização e menos dor de cabeça.
           </p>
           <div class="highlight-box">
-            "Meu compromisso é traduzir a rotina da sua empresa em um app
-            intuitivo, com fluxos claros e resultados mensuráveis — da visita
-            técnica até a entrega final."
+            "O ObraGest não é apenas um software, é a ferramenta que eu gostaria de ter quando comecei. Simples, direto
+            e resolve o problema."
           </div>
         </div>
         <div class="about-logos">
@@ -717,88 +959,81 @@
   <!-- Features Section -->
   <section class="features" id="features">
     <div class="container">
-      <h2>Soluções que Geram Resultado</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📋</div>
-          <h3>Projetos no Prazo</h3>
-          <p>
-            Monte cronogramas realistas com etapas, responsáveis e alertas.
-            Ajuste tudo com poucos cliques conforme a obra evolui.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Status em Tempo Real</h3>
-          <p>
-            Visualize o que está adiantado ou atrasado e antecipe decisões de
-            compra, equipe e logística.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📝</div>
-          <h3>Diário Visual de Obra</h3>
-          <p>
-            Registre ocorrências com fotos, vídeos e observações. Compartilhe
-            apenas o que o cliente precisa para confiar no processo.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📈</div>
-          <h3>Visão Gerencial</h3>
-          <p>
-            Gere relatórios claros com percentuais de avanço e indicadores que
-            sustentam reuniões com sócios e investidores.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📱</div>
-          <h3>Use em Qualquer Dispositivo</h3>
-          <p>
-            Acesse pelo celular, tablet ou computador. Continue operando mesmo
-            quando o canteiro estiver sem sinal.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔐</div>
-          <h3>Acesso Seguro e Controlado</h3>
-          <p>
-            Defina quem vê cada informação e mantenha contratos, valores e
-            documentos confidenciais protegidos.
-          </p>
+      <div class="container">
+        <h2>Tudo o que você precisa</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Projetos no Prazo</h3>
+            <p>
+              Monte cronogramas realistas com etapas, responsáveis e alertas.
+              Ajuste tudo com poucos cliques conforme a obra evolui.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Status em Tempo Real</h3>
+            <p>
+              Visualize o que está adiantado ou atrasado e antecipe decisões de
+              compra, equipe e logística.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Diário Visual de Obra</h3>
+            <p>
+              Registre ocorrências com fotos, vídeos e observações. Compartilhe
+              apenas o que o cliente precisa para confiar no processo.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Visão Gerencial</h3>
+            <p>
+              Gere relatórios claros com percentuais de avanço e indicadores que
+              sustentam reuniões com sócios e investidores.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Use em Qualquer Dispositivo</h3>
+            <p>
+              Acesse pelo celular, tablet ou computador. Continue operando mesmo
+              quando o canteiro estiver sem sinal.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Acesso Seguro e Controlado</h3>
+            <p>
+              Defina quem vê cada informação e mantenha contratos, valores e
+              documentos confidenciais protegidos.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
   </section>
 
-  <!-- Differential Section -->
-  <section class="differential" id="differential">
+  <!-- Benefits Section -->
+  <section class="differential" id="benefits">
     <div class="container">
-      <h2>Nosso Diferencial</h2>
+      <h2>Por que usar o ObraGest?</h2>
       <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem">
-        Um App que se Molda ao Seu Negócio
-      </p>
-      <p style="text-align: center; margin-bottom: 2rem">
-        Cada construtora tem seu próprio ritmo e jeito de entregar resultados.
-        O ObraGest nasce do seu processo atual e evolui junto com a sua
-        equipe, evitando longos treinamentos e desperdício de licença.
+        Feito para quem não tem tempo a perder.
       </p>
       <div class="differential-content">
         <div class="differential-card">
-          <div class="differential-icon">⚙️</div>
-          <h3>Funcionalidades Sob Medida</h3>
+          <div class="differential-icon">🚀</div>
+          <h3>Pronto para Usar</h3>
           <p>
-            Campos específicos, integrações e relatórios exclusivos entram no
-            seu pacote. Desenvolvemos o que for necessário para refletir o seu
-            jeito de trabalhar.
+            Crie sua conta e comece a cadastrar suas obras em minutos. Sem instalação complexa, sem treinamento longo.
           </p>
         </div>
         <div class="differential-card">
-          <div class="differential-icon">🎨</div>
-          <h3>Identidade Visual</h3>
+          <div class="differential-icon">☁️</div>
+          <h3>Tudo na Nuvem</h3>
           <p>
-            Entregue um app com sua marca, cores e tom de voz, reforçando
-            confiança a cada atualização enviada ao cliente.
+            Seus dados estão seguros e acessíveis de qualquer lugar. Perdeu o celular? Seus dados continuam salvos.
           </p>
         </div>
         <div class="differential-card">
@@ -813,194 +1048,97 @@
     </div>
   </section>
 
-  <!-- Architecture Section -->
-  <section class="architecture" id="delivery">
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
     <div class="container">
-      <h2>Como Entregamos</h2>
-      <p style="text-align: center; margin-bottom: 2rem">
-        Processo claro do primeiro contato até a operação rodando.
+      <h2>Planos que cabem no seu bolso</h2>
+      <p style="text-align: center; margin-bottom: 3rem">
+        Comece grátis e cresça conforme sua demanda.
       </p>
-      <div class="arch-diagram">
-        <div class="arch-box">
-          <h4>1. Diagnóstico e Planejamento</h4>
-          <p style="margin-bottom: 1rem; font-size: 0.95rem">
-            Mergulhamos na sua realidade para priorizar o que gera resultado
-            imediato.
-          </p>
-          <ul>
-            <li>Workshops com sua equipe</li>
-            <li>Mapeamento de fluxos e formulários</li>
-            <li>Roadmap com entregas rápidas</li>
+      <div class="pricing-grid">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+          <div class="price-header">
+            <h3>Gratuito</h3>
+            <div class="price">R$ 0<span>/mês</span></div>
+          </div>
+          <ul class="price-features">
+            <li>Até 1 Obra Ativa</li>
+            <li>Cronograma Básico</li>
+            <li>Diário de Obra (Fotos)</li>
+            <li class="disabled">Relatórios Avançados</li>
+            <li class="disabled">Múltiplos Usuários</li>
+            <li class="disabled">Suporte Prioritário</li>
           </ul>
+          <a href="#" class="price-cta secondary">Começar Grátis</a>
         </div>
-        <div class="arch-box">
-          <h4>2. Construção e Validação</h4>
-          <p style="margin-bottom: 1rem; font-size: 0.95rem">
-            Construímos o app em ciclos curtos, apresentando telas e ajustes a
-            cada sprint.
-          </p>
-          <ul>
-            <li>Protótipos navegáveis</li>
-            <li>Feedback direto com decisores</li>
-            <li>Entrega parcial para testes reais</li>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card featured">
+          <div class="price-header">
+            <h3>Profissional</h3>
+            <div class="price">R$ 49,90<span>/mês</span></div>
+          </div>
+          <ul class="price-features">
+            <li>Obras Ilimitadas</li>
+            <li>Cronograma Completo</li>
+            <li>Diário de Obra (Fotos e Vídeos)</li>
+            <li>Relatórios em PDF</li>
+            <li>Gestão de Equipe (até 5 usuários)</li>
+            <li>Suporte via WhatsApp</li>
           </ul>
-        </div>
-        <div class="arch-box">
-          <h4>3. Implantação e Evolução</h4>
-          <p style="margin-bottom: 1rem; font-size: 0.95rem">
-            Treinamos sua equipe, monitoramos o uso e evoluímos novas
-            funcionalidades.
-          </p>
-          <ul>
-            <li>Onboarding guiado</li>
-            <li>Suporte humano próximo</li>
-            <li>Melhorias contínuas planejadas</li>
-          </ul>
+          <a href="#" class="price-cta primary">Assinar Agora</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Legal Documents Section -->
-  <section class="docs" id="documents">
-    <div class="container">
-      <h2>Documentação Essencial</h2>
-      <p style="text-align: center; margin-bottom: 2rem">
-        Compilamos os documentos mais solicitados em negociações para garantir
-        transparência e segurança jurídica.
-      </p>
-      <div class="docs-grid">
-        <article class="doc-card">
-          <h3>Política de Privacidade</h3>
-          <p>
-            Explica como o ObraGest coleta, utiliza e protege dados de clientes,
-            equipes e fornecedores seguindo a LGPD.
-          </p>
-          <details>
-            <summary>Principais pontos</summary>
-            <ul>
-              <li>Coleta limitada a informações necessárias à execução da obra.</li>
-              <li>
-                Uso restrito para gestão de projetos, comunicação e cumprimento
-                contratual.
-              </li>
-              <li>
-                Dados são armazenados em provedores com certificações de
-                segurança e acesso controlado.
-              </li>
-              <li>
-                Direitos dos titulares: acesso, correção, portabilidade e
-                exclusão sob solicitação formal.
-              </li>
-              <li>
-                Encarregado de dados: contato via
-                <a href="mailto:contato.raizeletrica@gmail.com">contato.raizeletrica@gmail.com</a>.
-              </li>
-            </ul>
-          </details>
-          <p style="font-size: 0.9rem; color: #777">
-            Última atualização: Janeiro/2025.
-          </p>
-        </article>
-        <article class="doc-card">
-          <h3>Termos de Uso Comercial</h3>
-          <p>
-            Define responsabilidades, limites e boas práticas para utilizar o
-            aplicativo dentro da sua empresa.
-          </p>
-          <details>
-            <summary>Cláusulas em destaque</summary>
-            <ul>
-              <li>Licença de uso corporativa não exclusiva e intransferível.</li>
-              <li>
-                Responsabilidade do cliente por manter credenciais seguras e
-                atualizar usuários autorizados.
-              </li>
-              <li>
-                Propriedade intelectual do software permanece com Leandro
-                Tenorio, com direitos de personalização contratados à parte.
-              </li>
-              <li>
-                Suspensão do acesso em casos de inadimplência ou uso fora do
-                escopo acordado.
-              </li>
-              <li>
-                Foro eleito: São Paulo/SP, respeitando o Código de Defesa do
-                Consumidor quando aplicável.
-              </li>
-            </ul>
-          </details>
-        </article>
-        <article class="doc-card">
-          <h3>Política de Suporte e SLA</h3>
-          <p>
-            Compromissos de atendimento após a implantação para garantir que o
-            ObraGest permaneça alinhado ao seu time.
-          </p>
-          <details>
-            <summary>Níveis de atendimento</summary>
-            <ul>
-              <li>
-                Suporte via WhatsApp e e-mail em horário comercial (9h às 18h,
-                dias úteis).
-              </li>
-              <li>
-                Resposta inicial em até 4 horas úteis para incidentes críticos e
-                1 dia útil para dúvidas operacionais.
-              </li>
-              <li>
-                Correções emergenciais priorizadas conforme impacto no
-                cronograma das obras.
-              </li>
-              <li>
-                Entregas de melhorias combinadas em ciclos quinzenais ou
-                mensais, conforme contrato.
-              </li>
-            </ul>
-          </details>
-        </article>
-        <article class="doc-card">
-          <h3>Política de Cookies e Segurança</h3>
-          <p>
-            Detalha o uso de cookies técnicos e mecanismos de proteção para os
-            dados acessados pelo time.
-          </p>
-          <details>
-            <summary>Saiba como protegemos seus dados</summary>
-            <ul>
-              <li>
-                Utilizamos cookies estritamente necessários para autenticação e
-                manutenção de sessão.
-              </li>
-              <li>
-                Não há uso de cookies para publicidade de terceiros sem
-                consentimento explícito.
-              </li>
-              <li>
-                Logs de acesso ficam disponíveis para auditoria por 12 meses.
-              </li>
-              <li>
-                Integrações externas seguem padrões de criptografia TLS e
-                autenticação via token.
-              </li>
-              <li>
-                Procedimentos de backup diário e testes periódicos de
-                recuperação.
-              </li>
-            </ul>
-          </details>
-        </article>
-      </div>
+
+
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <h2>Perguntas Frequentes</h2>
+
+    <div class="faq-item">
+      <details>
+        <summary>Preciso instalar algum programa no computador?</summary>
+        <p>Não! O ObraGest é 100% online. Você acessa pelo navegador do seu celular, tablet ou computador, sem ocupar
+          memória do dispositivo.</p>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>Funciona sem internet?</summary>
+        <p>Sim! O app salva seus dados localmente e sincroniza tudo automaticamente assim que você recuperar a conexão.
+          Ideal para obras em locais remotos.</p>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>Posso cancelar quando quiser?</summary>
+        <p>Com certeza. Não temos fidelidade. Você pode cancelar sua assinatura a qualquer momento direto pelo painel,
+          sem burocracia.</p>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>O plano gratuito é realmente grátis?</summary>
+        <p>Sim, para sempre. O plano gratuito permite gerenciar 1 obra ativa com todas as funcionalidades essenciais.
+          Você só paga se precisar gerenciar mais obras simultaneamente.</p>
+      </details>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2>Vamos Construir Juntos?</h2>
+      <h2>Ficou com alguma dúvida?</h2>
       <p style="font-size: 1.1rem; margin-bottom: 2rem">
-        Esta apresentação é o ponto de partida. O próximo passo é agendar uma
-        conversa para entendermos a fundo suas necessidades.
+        Nossa equipe está pronta para te ajudar a escolher o melhor plano.
       </p>
       <div class="contact-info">
         <div class="contact-card">
