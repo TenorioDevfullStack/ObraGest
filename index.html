@@ -5,17 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="ObraGest - App comercial para empresas de engenharia e reformas controlarem obras, equipes e clientes em um único lugar." />
+    content="Sistema completo para gerenciar cronogramas, documentação e progresso de projetos de construção civil. Gerencie obras, reformas e serviços com facilidade." />
   <meta name="keywords" content="gestão de obras, cronograma, reformas, construção, PWA, app" />
   <meta name="author" content="Intelligent Dev Solutions" />
-  <title>ObraGest - Gestão Inteligente de Obras e Reformas</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="logos/favicon_io/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="logos/favicon_io/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="logos/favicon_io/favicon-16x16.png" />
+  <title>ObraGest - Sistema de Gerenciamento de Obras</title>
   <link rel="icon" type="image/png" sizes="64x64" href="logos/favicon_io/icon_64x64.png" />
-  <link rel="manifest" href="logos/favicon_io/site.webmanifest" />
-  <link rel="icon" type="image/png" sizes="192x192" href="logos/favicon_io/android-chrome-192x192.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="logos/favicon_io/android-chrome-512x512.png" />
+  <link rel="apple-touch-icon" href="logos/favicon_io/icon_64x64.png" />
   <style>
     * {
       margin: 0;
@@ -24,14 +19,14 @@
     }
 
     :root {
-      --primary-color: #d85a17;
-      --secondary-color: #f5a44c;
-      --accent-color: #ffe3c4;
+      --primary-color: #ea580c;
+      --secondary-color: #020817;
+      --accent-color: #f1f5f9;
       --success-color: #5abf90;
       --danger-color: #ff6b6b;
-      --light-bg: #fff8f1;
-      --dark-text: #2f1c0f;
-      --border-color: #f3d8c0;
+      --light-bg: #f8fafc;
+      --dark-text: #020817;
+      --border-color: #e2e8f0;
       --shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
@@ -39,7 +34,7 @@
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       color: var(--dark-text);
-      background: linear-gradient(180deg, #fffdf7 0%, #fff6ec 100%);
+      background: var(--light-bg);
     }
 
     a {
@@ -52,7 +47,7 @@
 
     /* Header & Navigation */
     header {
-      background: #5a1f0f;
+      background: #020817;
       color: white;
       padding: 1rem 0;
       position: sticky;
@@ -119,28 +114,112 @@
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #fff3e0 0%, #ffd4a8 100%);
+      background: var(--light-bg);
       color: var(--dark-text);
       padding: 6rem 2rem;
       text-align: center;
     }
 
     .hero-content {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      text-align: left;
+    }
+
+    .hero-text {
+      max-width: 100%;
     }
 
     .hero h1 {
       font-size: 3.5rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+      color: var(--dark-text);
+      line-height: 1.2;
     }
 
     .hero p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       margin-bottom: 2rem;
-      opacity: 0.9;
+      opacity: 0.8;
+      color: #555;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .cta-button.secondary {
+      background-color: transparent;
+      color: var(--dark-text);
+      border: 1px solid var(--border-color);
+    }
+
+    .cta-button.secondary:hover {
+      background-color: #f1f5f9;
+      transform: translateY(-2px);
+      box-shadow: none;
+    }
+
+    .hero-features {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .hero-features h3 {
+      font-size: 1.25rem;
+      color: var(--dark-text);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .hero-features ul {
+      list-style: none;
+    }
+
+    .hero-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    .hero-features li::before {
+      content: "✓";
+      color: var(--primary-color);
+      font-weight: bold;
+      min-width: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-features {
+        padding: 1.5rem;
+        text-align: left;
+      }
     }
 
     .cta-button {
@@ -184,59 +263,10 @@
 
     section h3 {
       font-size: 1.5rem;
-      color: var(--secondary-color);
+      color: var(--primary-color);
       margin-bottom: 1rem;
     }
 
-    /* About Section */
-    .about {
-      background-color: #fffdf9;
-    }
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text p {
-      margin-bottom: 1rem;
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .about-logos {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .logo-box {
-      background: #ffffff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      flex: 0 1 150px;
-    }
-
-    .logo-box img {
-      max-width: 100%;
-      height: auto;
-      max-height: 120px;
-    }
-
-    .highlight-box {
-      background-color: var(--accent-color);
-      border-left: 5px solid var(--secondary-color);
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 5px;
-      font-style: italic;
-      color: var(--dark-text);
-    }
 
     /* Features Section */
     .features {
@@ -255,7 +285,7 @@
       border-radius: 12px;
       box-shadow: var(--shadow);
       transition: all 0.3s;
-      border-top: 4px solid var(--secondary-color);
+      border-top: 4px solid var(--primary-color);
     }
 
     .feature-card:hover {
@@ -280,7 +310,7 @@
 
     /* Differential Section */
     .differential {
-      background: linear-gradient(135deg, #fff8ef 0%, #ffe0c7 100%);
+      background: white;
     }
 
     .differential-content {
@@ -301,7 +331,7 @@
     .differential-icon {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: var(--accent-color);
+      color: var(--primary-color);
     }
 
     /* Architecture Section */
@@ -327,7 +357,7 @@
     .arch-box h4 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      border-bottom: 2px solid #ffe0cc;
+      border-bottom: 2px solid var(--border-color);
       padding-bottom: 0.5rem;
     }
 
@@ -423,12 +453,12 @@
     }
 
     .contact-card h4 {
-      color: var(--accent-color);
+      color: var(--primary-color);
       margin-bottom: 0.5rem;
     }
 
     .contact-card a {
-      color: var(--secondary-color);
+      color: var(--dark-text);
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
@@ -497,7 +527,7 @@
     }
 
     footer a {
-      color: var(--accent-color);
+      color: white;
       text-decoration: none;
       font-weight: bold;
     }
@@ -828,7 +858,7 @@
 
     /* Pricing Section */
     .pricing {
-      background-color: #fffdf9;
+      background-color: var(--light-bg);
     }
 
     .pricing-grid {
@@ -958,7 +988,7 @@
   <header>
     <nav>
       <div class="logo">
-        <img src="logos/favicon_io/icon_128x128.png" alt="Logo ObraGest" />
+        <img src="logos/favicon_io/icon_64x64.png" alt="Logo ObraGest" />
         ObraGest
       </div>
       <button class="menu-toggle" aria-label="Abrir menu principal">☰</button>
@@ -966,7 +996,6 @@
         <li><a href="#features">Funcionalidades</a></li>
         <li><a href="#benefits">Benefícios</a></li>
         <li><a href="#pricing">Planos</a></li>
-        <li><a href="#about">Quem Somos</a></li>
         <li><a href="#contact">Suporte</a></li>
       </ul>
     </nav>
@@ -975,12 +1004,26 @@
   <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-content">
-      <h1>ObraGest</h1>
-      <p>O controle total das suas obras, do orçamento à entrega.</p>
-      <p style="font-size: 1.1rem; opacity: 0.9">
-        Centralize cronogramas, equipes e financeiro em um único lugar. Comece a usar agora mesmo.
-      </p>
-      <a href="#pricing" class="cta-button">Começar Grátis</a>
+      <div class="hero-text">
+        <h1>Gestão inteligente de obras, do cronograma ao relatório final.</h1>
+        <p>
+          Organize projetos, acompanhe tarefas, registre diários com fotos e exporte PDFs com branding da sua empresa.
+        </p>
+        <div class="hero-buttons">
+          <a href="#pricing" class="cta-button">Começar no Free</a>
+          <a href="#pricing" class="cta-button secondary">Ver planos</a>
+        </div>
+      </div>
+      <div class="hero-features">
+        <h3>Funcionalidades principais</h3>
+        <ul>
+          <li>Cronogramas por etapas e tarefas com alertas de atraso</li>
+          <li>Diário de obra com fotos e anexos</li>
+          <li>Exportação de relatórios em PDF com branding</li>
+          <li>Controle por organização e papéis</li>
+          <li>Acesso VIP por código e planos com limites claros</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -1007,45 +1050,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="about">
-    <div class="container">
-      <h2>Quem Está por Trás</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            Sou Leandro Tenorio, <strong>Técnico em Eletrônica</strong> e
-            <strong>Eletricista</strong>. Criei o ObraGest porque sentia na pele a dificuldade de controlar cronogramas
-            e equipes usando planilhas e cadernos.
-          </p>
-          <p>
-            Desenvolvi essa ferramenta para resolver meus próprios problemas no canteiro de obras. Hoje, ela ajuda
-            centenas de profissionais a terem mais organização e menos dor de cabeça.
-          </p>
-          <div class="highlight-box">
-            "O ObraGest não é apenas um software, é a ferramenta que eu gostaria de ter quando comecei. Simples, direto
-            e resolve o problema."
-          </div>
-        </div>
-        <div class="about-logos">
-          <div class="logo-box">
-            <img src="logos/raizeletrica_logo.jpeg" alt="Logo Raiz Elétrica"
-              style="max-height: 60px; margin-bottom: 0.5rem" />
-            <p style="font-size: 0.8rem; color: var(--dark-text)">
-              Serviços Elétricos
-            </p>
-          </div>
-          <div class="logo-box">
-            <img src="logos/logo-ids.png" alt="Logo Intelligent Dev Solutions"
-              style="max-height: 60px; margin-bottom: 0.5rem" />
-            <p style="font-size: 0.8rem; color: var(--dark-text)">
-              Intelligent Dev Solutions
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Features Section -->
   <section class="features" id="features">
@@ -1142,43 +1146,59 @@
   <!-- Pricing Section -->
   <section class="pricing" id="pricing">
     <div class="container">
-      <h2>Planos que cabem no seu bolso</h2>
-      <p style="text-align: center; margin-bottom: 3rem">
-        Comece grátis e cresça conforme sua demanda.
+      <h2>Planos</h2>
+      <p style="text-align: center; margin-bottom: 3rem; color: #666;">
+        Escolha o plano ideal para começar. Você pode mudar depois em /billing.
       </p>
       <div class="pricing-grid">
         <!-- Free Plan -->
         <div class="pricing-card">
           <div class="price-header">
-            <h3>Gratuito</h3>
-            <div class="price">R$ 0<span>/mês</span></div>
+            <h3 style="color: var(--dark-text); font-size: 1.1rem; text-align: left;">Free (Demo)</h3>
+            <div class="price" style="text-align: left;">R$0</div>
+            <p style="text-align: left; font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">1 projeto para testar o
+              produto.</p>
           </div>
           <ul class="price-features">
-            <li>Até 1 Obra Ativa</li>
-            <li>Cronograma Básico</li>
-            <li>Diário de Obra (Fotos)</li>
-            <li class="disabled">Relatórios Avançados</li>
-            <li class="disabled">Múltiplos Usuários</li>
-            <li class="disabled">Suporte Prioritário</li>
+            <li>1 projeto</li>
+            <li>Uploads limitados</li>
+            <li>Exportação básica</li>
           </ul>
-          <a href="#" class="price-cta secondary">Começar Grátis</a>
+          <a href="#" class="price-cta primary">Começar Free</a>
+        </div>
+
+        <!-- Essencial Plan -->
+        <div class="pricing-card">
+          <div class="price-header">
+            <h3 style="color: var(--dark-text); font-size: 1.1rem; text-align: left;">Essencial</h3>
+            <div class="price" style="text-align: left;">R$29,90<span
+                style="font-size: 1rem; color: var(--dark-text);">/mês</span></div>
+            <p style="text-align: left; font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">Para equipes que estão
+              digitalizando a operação.</p>
+          </div>
+          <ul class="price-features">
+            <li>Até 5 projetos</li>
+            <li>Exportação completa</li>
+            <li>Suporte por email</li>
+          </ul>
+          <a href="#" class="price-cta primary">Assinar Essencial</a>
         </div>
 
         <!-- Pro Plan -->
-        <div class="pricing-card featured">
+        <div class="pricing-card">
           <div class="price-header">
-            <h3>Profissional</h3>
-            <div class="price">R$ 49,90<span>/mês</span></div>
+            <h3 style="color: var(--dark-text); font-size: 1.1rem; text-align: left;">Pro</h3>
+            <div class="price" style="text-align: left;">R$49,90<span
+                style="font-size: 1rem; color: var(--dark-text);">/mês</span></div>
+            <p style="text-align: left; font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">Para operações em escala
+              com múltiplos membros.</p>
           </div>
           <ul class="price-features">
-            <li>Obras Ilimitadas</li>
-            <li>Cronograma Completo</li>
-            <li>Diário de Obra (Fotos e Vídeos)</li>
-            <li>Relatórios em PDF</li>
-            <li>Gestão de Equipe (até 5 usuários)</li>
-            <li>Suporte via WhatsApp</li>
+            <li>Projetos ilimitados</li>
+            <li>Colaboração por organização</li>
+            <li>Suporte prioritário</li>
           </ul>
-          <a href="#" class="price-cta primary">Assinar Agora</a>
+          <a href="#" class="price-cta primary">Assinar Pro</a>
         </div>
       </div>
     </div>
@@ -1269,20 +1289,9 @@
           <a href="mailto:contato.raizeletrica@gmail.com">contato.raizeletrica@gmail.com</a>
         </div>
         <div class="contact-card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"
-            class="contact-logo" />
-          <h4>Instagram</h4>
-          <a href="https://www.instagram.com/raiz_eletrica?igsh=MXF0cmd5OHNwY3c1OA==" target="_blank">@raiz_eletrica</a>
-        </div>
-        <div class="contact-card">
           <img src="logos/logo-ids.png" alt="Intelligent Dev Solutions" class="contact-logo" />
           <h4>Portfólio</h4>
           <a href="https://intelligentdevsolutions.com/" target="_blank">intelligentdevsolutions.com</a>
-        </div>
-        <div class="contact-card">
-          <img src="logos/raizeletrica_logo.jpeg" alt="Raiz Elétrica" class="contact-logo" />
-          <h4>Raiz Elétrica</h4>
-          <a href="https://www.raizeletrica.com.br/" target="_blank">raizeletrica.com.br</a>
         </div>
       </div>
     </div>
@@ -1301,16 +1310,20 @@
 
   <!-- Footer -->
   <footer>
-    <p>
-      <strong>ObraGest</strong> - Gestão Inteligente de Obras e Reformas
-    </p>
-    <p>
-      Desenvolvido com ❤️ por
-      <a href="https://intelligentdevsolutions.com/" target="_blank">Intelligent Dev Solutions</a>
-    </p>
-    <p style="margin-top: 1rem; font-size: 0.9rem">
-      © 2025 Todos os direitos reservados. CNPJ: 61.919.928/0001-69.
-    </p>
+    <div
+      style="display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 2rem; flex-wrap: wrap; gap: 1rem; align-items: center;">
+      <div style="display: flex; gap: 2rem;">
+        <a href="#hero" style="color: white; font-weight: normal; font-size: 0.9rem;">Como funciona / FAQ</a>
+        <a href="#" style="color: white; font-weight: normal; font-size: 0.9rem;">Termos e Privacidade</a>
+      </div>
+      <div style="color: white; font-size: 0.9rem;">
+        Suporte: <a href="mailto:contato@raizeletrica.com.br"
+          style="color: white; text-decoration: underline;">contato@raizeletrica.com.br</a>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem; font-size: 0.8rem; opacity: 0.8;">
+      © 2025 ObraGest. Todos os direitos reservados.
+    </div>
   </footer>
   <script>
     const menuToggle = document.querySelector(".menu-toggle");

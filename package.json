@@ -1,0 +1,12 @@
+{
+  "name": "obragest-master",
+  "version": "1.0.0",
+  "description": "Landing page comercial do ObraGest, uma solução para gestão de obras e reformas. O site apresenta benefícios, diferenciais, processo de entrega, documentação legal e canais de contato usando HTML/CSS puro.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
