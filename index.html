@@ -443,6 +443,56 @@
       gap: 18px;
     }
 
+    .video-section {
+      background: #fff;
+    }
+
+    .video-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .video-summary {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .video-summary div {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--soft);
+    }
+
+    .video-summary strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .video-summary span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .video-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #0b1220;
+      box-shadow: var(--shadow);
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0b1220;
+    }
+
     .feature {
       min-height: 238px;
       padding: 22px;
@@ -753,6 +803,7 @@
 
       .hero-inner,
       .pain-grid,
+      .video-layout,
       .product-layout,
       .final-cta .container {
         grid-template-columns: 1fr;
@@ -825,6 +876,10 @@
         width: 64%;
       }
 
+      .video-layout {
+        gap: 28px;
+      }
+
       .price-card {
         min-height: auto;
       }
@@ -847,6 +902,7 @@
       <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
       <div class="nav-links">
         <a href="#problema">Dores</a>
+        <a href="#video">Vídeo</a>
         <a href="#funcionalidades">Funcionalidades</a>
         <a href="#produto">Produto</a>
         <a href="#planos">Planos</a>
@@ -956,6 +1012,37 @@
           <div class="screen screen-small">
             <img src="img/schedule.png" alt="Cronograma de obra no ObraGest" />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section" id="video">
+      <div class="container video-layout">
+        <div>
+          <div class="section-head">
+            <p class="section-kicker">Resumo da proposta</p>
+            <h2>Veja como o ObraGest organiza a rotina da obra em uma visão prática.</h2>
+            <p>
+              O vídeo apresenta a proposta do produto e as principais funcionalidades para acompanhar obras, registrar
+              informações de campo e comunicar progresso com clareza.
+            </p>
+          </div>
+          <div class="video-summary">
+            <div>
+              <strong>Proposta objetiva</strong>
+              <span>Entenda rapidamente onde o ObraGest reduz improviso e retrabalho.</span>
+            </div>
+            <div>
+              <strong>Funcionalidades em contexto</strong>
+              <span>Veja como cronograma, diário de obra, financeiro e relatórios se conectam.</span>
+            </div>
+          </div>
+        </div>
+        <div class="video-frame fade-in">
+          <video controls preload="metadata" playsinline aria-label="Resumo da proposta e funcionalidades do ObraGest">
+            <source src="media/resumo-obragest.mp4" type="video/mp4" />
+            Seu navegador não suporta a reprodução de vídeo.
+          </video>
         </div>
       </div>
     </section>
